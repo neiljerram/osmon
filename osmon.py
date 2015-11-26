@@ -35,6 +35,7 @@ def main():
 
     print service_dict
 
+    dst_port = None
     state = INIT
 
     for line in sys.stdin:
