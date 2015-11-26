@@ -19,25 +19,4 @@ for port in $*; do
     capture_filters="$capture_filters or `capture_filter_for_port $port`"
 done
 
-sudo tshark -i any $display_filters -f "$capture_filters" -V -Y http | awk '
-
-BEGIN {
-        disp = 0;
-}
-
-/^[A-Z]/ {
-        disp = 0;
-}
-
-/^Hypertext/ {
-        disp = 1;
-}
-
-/^Java/ {
-        disp = 1;
-}
-
-{
-        if (disp) print;
-}
-'
+sudo tshark -i any $display_filters -f "$capture_filters" -V -Y http | python osmon.py
