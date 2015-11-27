@@ -102,7 +102,7 @@ def main():
                 print "Blob:\n%s" % blob
                 dst_port = None
 
-		summary = detail.split('\n')[0]
+		summary = blob.split('\n')[0]
 
                 dbhandler = cnct.cursor()
                 print("About to insert")
