@@ -137,7 +137,7 @@ def main():
                                  src_port, dst_port,
                                  service_dict.get(src_port, 'unknown'),
                                  service_dict.get(dst_port, 'unknown'),
-                                 frame_arrival_time, summary, blob))
+                                 conv_time(frame_arrival_time), summary, blob))
                 #print(sqlstatement)
 
                 dbhandler.execute(sqlstatement)
