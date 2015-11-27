@@ -51,7 +51,7 @@ def main():
                              port = 3306,
                              user = 'root',
                              passwd = 'mng1',
-                             database = 'db')
+                             db = 'db')
         
         for line in sys.stdin:
             line = line.rstrip('\n')
