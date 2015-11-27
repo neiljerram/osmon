@@ -101,6 +101,11 @@ def main():
                 print "Blob:\n%s" % blob
                 dst_port = None
 
+                dbhandler = cnct.cursor()
+                dbhandler.execute("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, detail) VALUES (%s, %s, %s, %s, %s)" %
+                                  ("Event", src, dst, frame_arrival_time, blob))
+                cnct.commit()
+
             if state == HTTP:
                 if re.match(r'        ', line):
                     continue
@@ -112,11 +117,6 @@ def main():
             if state == JSON:
                 blob = blob + line + '\n'
                 continue
-
-            dbhandler = cnct.cursor()
-            dbhandler.execute("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, detail) VALUES (%s, %s, %s, %s, %s)" %
-                              ("Event", src, dst, frame_arrival_time, blob))
-            cnct.commit()
     except Exception as e:
         print(e)
 
