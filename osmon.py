@@ -33,7 +33,14 @@ def main():
             else:
                 service_dict[match.group(1)] = service_name
 
-    print service_dict
+    LOG.info('service_dict is %s', service_dict)
+
+    proc = subprocess.Popen(['hostname',
+                             '-I'], stdout=subprocess.PIPE)
+    for line in proc.stdout:
+        my_ip = line.split(' ')[0]
+
+    LOG.info('my IP is %s', my_ip)
 
     dst_port = None
     state = INIT
@@ -49,6 +56,10 @@ def main():
         if match:
             src_ip = match.group(1)
             dst_ip = match.group(2)
+            if src_ip == '127.0.0.1':
+                src_ip = my_ip
+            if dst_ip == '127.0.0.1':
+                dst_ip = my_ip
 
         match = re.match(r'Transmission Control Protocol, Src Port: ([0-9]+) \([^)]+\), Dst Port: ([0-9]+)', line)
         if match:
