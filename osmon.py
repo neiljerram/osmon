@@ -128,7 +128,7 @@ def main():
 
                 dbhandler = cnct.cursor()
                 print("About to insert")
-                sqlstatement = ("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, summary, detail) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" %
+                sqlstatement = ("INSERT INTO nj_njrecord (event_id, source, dest, time_stamp, summary, detail) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" %
                                   (str(uuid.uuid1()), src, dst, conv_time(frame_arrival_time), summary, "Fixed string"))
                 print(sqlstatement)                  
                                   
