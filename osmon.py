@@ -3,6 +3,7 @@ import logging
 import re
 import subprocess
 import sys
+import MySQLdb as db
 
 logging.basicConfig(filename='osmon.log',level=logging.DEBUG)
 LOG = logging
