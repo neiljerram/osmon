@@ -102,9 +102,13 @@ def main():
                 print "Blob:\n%s" % blob
                 dst_port = None
 
+		summary = detail.split('\n')[0]
+
                 dbhandler = cnct.cursor()
-                dbhandler.execute("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, detail) VALUES ('%s', '%s', '%s', '%s', '%s')" %
-                                  ("Event", src, dst, conv_time(frame_arrival_time), blob))
+                print("About to insert")
+                dbhandler.execute("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, summary, detail) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" %
+                                  (str(uuid.uuid1()), src, dst, conv_time(frame_arrival_time), summary, blob))
+                print("About to commit")
                 cnct.commit()
 
             if state == HTTP:
