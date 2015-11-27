@@ -4,6 +4,7 @@ import re
 import subprocess
 import sys
 import MySQLdb as db
+from sample_output import months, conv_time
 
 logging.basicConfig(filename='osmon.log',level=logging.DEBUG)
 LOG = logging
@@ -102,8 +103,8 @@ def main():
                 dst_port = None
 
                 dbhandler = cnct.cursor()
-                dbhandler.execute("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, detail) VALUES (%s, %s, %s, %s, %s)" %
-                                  ("Event", src, dst, frame_arrival_time, blob))
+                dbhandler.execute("INSERT INTO 'nj_njrecord' (event_id, source, dest, time_stamp, detail) VALUES ('%s', '%s', '%s', '%s', '%s')" %
+                                  ("Event", src, dst, conv_time(frame_arrival_time), blob))
                 cnct.commit()
 
             if state == HTTP:
