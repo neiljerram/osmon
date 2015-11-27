@@ -150,7 +150,7 @@ def main():
                     continue
                 if re.match(r'    \[', line):
                     continue
-                blob = blob + line + '\n'
+                blob = blob + line.strip(' \r\n') + '\n'
                 continue
 
             if state == JSON:
