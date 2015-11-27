@@ -14,28 +14,6 @@ INIT = 1
 HTTP = 2
 JSON = 3
 
-months = {
-    'Jan':'01',
-    'Feb':'02',
-    'Mar':'03',
-    'Apr':'04',
-    'May':'05',
-    'Jun':'06',
-    'Jul':'07',
-    'Aug':'08',
-    'Sep':'09',
-    'Oct':'10',
-    'Nov':'11',
-    'Dec':'12',
-}
-
-def conv_time(s):
-    m = re.match(r'([A-Za-z]+) ([0-9]+), ([0-9]+) ([0-9:.]+[0-9][0-9][0-9][0-9][0-9][0-9]).*', s)
-    return '%s-%s-%02d %s+0000' % (m.group(3),
-                                   months[m.group(1)],
-                                   int(m.group(2)),
-                                   m.group(4))
-
 def main():
     service_dict = {}
     proc = subprocess.Popen(['openstack',
