@@ -63,6 +63,10 @@ def main():
             if match:
                 src_ip = match.group(1)
                 dst_ip = match.group(2)
+                if src_ip == '127.0.0.1':
+                    src_ip = my_ip
+                if dst_ip == '127.0.0.1':
+                    dst_ip = my_ip
 
             match = re.match(r'Transmission Control Protocol, Src Port: ([0-9]+) \([^)]+\), Dst Port: ([0-9]+)', line)
             if match:
@@ -79,15 +83,7 @@ def main():
             elif re.match(r'^[A-Z]', line):
                 state = INIT
                 continue
-
-            match = re.match(r'Internet Protocol Version 4, Src: ([0-9.]+) \([^)]+\), Dst: ([0-9.]+)', line)
-            if match:
-                src_ip = match.group(1)
-                dst_ip = match.group(2)
-                if src_ip == '127.0.0.1':
-                    src_ip = my_ip
-                if dst_ip == '127.0.0.1':
-                    dst_ip = my_ip
+                
             if state == INIT:
                 continue
 
