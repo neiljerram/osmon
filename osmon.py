@@ -3,8 +3,9 @@ import logging
 import re
 import subprocess
 import sys
+import uuid
 import MySQLdb as db
-from sample_output import months, conv_time
+import months, conv_time
 
 logging.basicConfig(filename='osmon.log',level=logging.DEBUG)
 LOG = logging
